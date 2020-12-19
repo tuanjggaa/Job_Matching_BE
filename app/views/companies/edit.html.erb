@@ -1,0 +1,168 @@
+<%= simple_form_for @company, html: { multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="container" id="student_cv">
+  <div class="row title d-flex justify-content-center text-center">
+    <h2 class="font-weight-bold mt-2">Edit Company Profile</h2>
+  </div>
+
+  <div class="row d-flex justify-content-center" >
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 d-flex justify-content-center">
+      <div class="row avatar">
+        <% if @company.logo.attached? %>
+          <%= image_tag @company.logo.variant(resize_to_fill: [150, 150]) %>
+        <% end %>
+        <%= f.input :logo,
+                    as: :file,
+                    label: false %>
+      </div>
+    </div>
+
+    <div class="col-sm-2 d-flex justify-content-center">
+      <div class="headline">
+        <% if @company.headline.attached? %>
+          <%= image_tag @company.headline.variant(resize_to_fill: [150, 150]) %>
+        <% end %>
+        <%= f.input :headline,
+                    as: :file,
+                    label: false %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 25px;">
+    <div class="col-sm-2 d-flex">
+      <p>Name:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :name,
+                  required: true,
+                  autofocus: true,
+                  placeholder: "Enter name",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Expertise:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :expertise,
+                  required: false,
+                  placeholder: "Enter expertise",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Description:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :description,
+                  as: :text,
+                  required: false,
+                  placeholder: "Describe about company",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Address:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :address,
+                  required: true,
+                  placeholder: "Enter address",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Phone:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :phone,
+                  required: true,
+                  placeholder: "Enter phone",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Working Hours:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :working_hour,
+                  collection: 1..40,
+                  hint: "Number of hour for working time requirement per week",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Country:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :country,
+                  collection: ['An Giang',
+                              'Bà Rịa - Vũng Tàu',
+                              'Đà Nẵng',
+                              'Hải Phòng',
+                              'TP HCM'],
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Benefits:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :benefit,
+                  as: :text,
+                  required: false,
+                  placeholder: "Benefits when joining company",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Company Size:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :company_size,
+                  required: false,
+                  placeholder: "Number of employees",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Tax #:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :tax_identification_number,
+                  required: false,
+                  placeholder: "Tax identification number",
+                  label: false %>
+    </div>
+  </div>
+  
+  <div class="row mt-2">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <%= f.button :submit, "Save", class: "btn btn-success w-100" %>
+    </div>
+  </div>
+
+</div>
+<% end %>

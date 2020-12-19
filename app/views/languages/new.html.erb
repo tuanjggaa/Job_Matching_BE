@@ -1,0 +1,32 @@
+<%= simple_form_for @language, html: { multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="container" id="admin-manage-new">
+  <div class="row d-flex justify-content-center"><h1>Add New</h1></div>
+  <div class="row">
+      <div class="col-sm-3">Name:</div>
+      <div class="col-sm-9">
+        <%= f.input :name,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Enter name",
+                    label: false %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3">Code:</div>
+      <div class="col-sm-9">
+        <%= f.input :code,
+                    required: true,
+                    placeholder: "Enter code",
+                    label: false %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <%= f.button :submit, "Save", class: "btn btn-success w-100" %>
+      </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,145 @@
+<% if user_signed_in? %>
+  <% if current_user.student? %>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:beige !important;">
+    <%= link_to 'Student Board', student_job_board_path, class: "navbar-brand logo_font font-weight-bold" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">  
+        <li class="nav-item dropdown">
+          <%= link_to 'Profile', preview_cv_path(current_user), class: "text-decoration-none font-weight-bold text-secondary ml-2 mr-4" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'View Matched Companies', match_job_campaigns_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+        </li>    
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <% if current_user.student? %>
+            <li class="nav-item">
+              <%= link_to 'My CV', student_cv_path(current_user), class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+            </li>
+          <% elsif current_user.company? %>
+            <li class="nav-item">
+              <%= link_to 'Edit Profile', company_edit_profile_path(current_user), class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to edit_user_registration_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" do %>
+              <%= current_user.email %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary mr-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>      
+  </nav>
+  <% elsif current_user.company? %>
+  <nav class="navbar navbar-expand-md navbar-light bg-light py-3">
+    <%= link_to "Company Profile", company_profile_path(current_user.company), class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to "Campaigns", job_campaigns_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <% if current_user.student? %>
+            <li class="nav-item">
+              <%= link_to 'My CV', student_cv_path(current_user), class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+            </li>
+          <% elsif current_user.company? %>
+            <li class="nav-item">
+              <%= link_to 'Edit Profile', company_edit_profile_path(current_user), class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to edit_user_registration_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" do %>
+              <%= current_user.email %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary mr-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <% elsif current_user.admin? || current_user.super_admin? %>
+  <nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color: beige !important">
+    <%= link_to "Admin Board", users_path, class: "text-decoration-none font-weight-bold text-secondary" %>
+    <%= link_to "Languages", languages_path, class: "text-decoration-none font-weight-bold text-secondary ml-4" %>
+    <%= link_to "Certifications", certifications_path, class: "text-decoration-none font-weight-bold text-secondary ml-4" %>
+    <%= link_to "Tech Skills", tech_skills_path, class: "text-decoration-none font-weight-bold text-secondary ml-4" %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <% if current_user.student? %>
+            <li class="nav-item">
+              <%= link_to 'My CV', student_cv_path(current_user), class: "btn btn-primary mr-2" %>
+            </li>
+          <% elsif current_user.company? %>
+            <li class="nav-item">
+              <%= link_to 'Edit Profile', company_edit_profile_path(current_user), class: "btn btn-primary mr-2" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to edit_user_registration_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" do %>
+              <%= current_user.email %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary mr-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+  <% end %>
+<% else %>
+<nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color: beige !important">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <%= link_to "Job Matching", root_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "Sign in", new_user_session_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign up", new_user_registration_path, class: "text-decoration-none font-weight-bold text-secondary mr-4" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<% end %>

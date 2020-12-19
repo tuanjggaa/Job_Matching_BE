@@ -1,0 +1,53 @@
+<div class="container-fluid" id="student-main">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8" >
+      <div class="row">
+        <div class="col-lg" style="margin-top: 20px;">
+          <div class="input-group">
+            <input class="form-control border-secondary py-2" type="search" placeholder="Search for your matched job" style="height:60px" >
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" style="padding:0rem 1.5rem">
+                  <i class="fa fa-search"></i>
+                </button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row d-flex justify-content-center title" style="margin-top: 10px;">
+        <p>SOME JOBS THAT MIGHT FIT YOUR SKILLS</p>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+
+  <% @open_job_campaigns.each do |jc| %>
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <div class="col-lg-8">
+      <div class="row job_container">
+        <div class="col company_img_container">
+          <%= link_to company_profile_path(jc.company), class: "" do %>
+            <% if jc.company.logo.attached? %> 
+              <%= image_tag jc.company.logo.variant(resize_to_fill: [100, 100]) %>
+            <% else %>
+              <%= image_tag "default-company-logo.png", style:"width:100px" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col">        
+          <%= link_to preview_campaign_path(jc), class: "job_description_title" do %>
+            <p><%= jc.title %></p>
+          <% end %>
+          <span style="color:green"><i class="fa fa-usd" style="color:green" aria-hidden="true"></i> You Will Love It </span>
+          <p class="job_description_detail"><%= jc.description %></p>           
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+  <% end %>
+</div>

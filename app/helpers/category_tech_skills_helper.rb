@@ -1,0 +1,2 @@
+module CategoryTechSkillsHelper
+end
