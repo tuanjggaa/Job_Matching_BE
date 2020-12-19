@@ -1,0 +1,47 @@
+<div class="container" id="admin-manage-languages">
+    <div class="row d-flex justify-content-center text-center">
+        <h1>ALL LANGUAGES</h1>
+    </div>
+    <div class="row search">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search">
+                <div class="input-group-append">
+                  <button class="btn btn-success" type="submit">Go</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    <div class="row d-flex control_button">
+      <div class="col d-flex justify-content-center">
+        <%= link_to "Add New Language", new_language_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+    <div class="row table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Lang #</th>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <% @languages.each do |lang| %>
+            <tbody>
+              <tr>
+                <td><%= lang.id %></td>
+                <td><%= lang.name %></td>
+                <td><%= lang.code %></td>
+                <td>
+                  <%= link_to "Edit", edit_language_path(lang), class: "btn btn-primary mr-1" %>
+                  <%= link_to "Delete", language_path(lang), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+                </td>
+              </tr>      
+            </tbody>
+            <% end %>
+          </table>
+    </div>
+</div>

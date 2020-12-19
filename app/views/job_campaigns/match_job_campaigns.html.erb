@@ -1,0 +1,29 @@
+<div class="container" id="company-match-students">
+  <div class="row d-flex justify-content-center text-center" style="padding-top: 30px;">
+    <h1><strong>Jobs match you</strong></h1>
+  </div>
+  <div class="row d-flex justify-content-center text-center py-3">
+    <h2>These are jobs that suit you CV the most</h2>
+  </div>
+  <div class="row">
+    <% @job_campaigns.each do |jc| %>
+    <div class="col-sm-4">
+      <div class="profile_container" id="logo-box">
+        <div class="avatar_container d-flex justify-content-center">
+          <% if jc.company.logo.attached? %>
+            <%= image_tag jc.company.logo.variant(resize_to_fill: [250, 250]) %>
+          <% else %>
+            <%= image_tag "default-company-logo.png", style:"width:250px" %>
+          <% end %>
+        </div>
+        <div class="text-center text-truncate font-weight-bold px-3 py-2" style="max-width: 100%">
+          <%= jc.title %>
+        </div>
+        <div>
+          <%= link_to "View", preview_campaign_path(jc), class: "btn view_btn" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

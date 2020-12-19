@@ -1,0 +1,33 @@
+<div class="container" id="company-match-students">
+  <div class="row d-flex justify-content-center text-center" style="padding-top: 30px;">
+    <h1><strong>Students that match your Campaign</strong></h1>
+  </div>
+  <div class="row d-flex justify-content-center text-center py-3">
+    <h2><strong><%= @job_campaign.title %></strong></h2>
+  </div>
+  <div class="row">
+    <% @students.includes(avatar_attachment: :blob).each do |stud| %>
+    <div class="col-sm-4 my-2">
+      <div class="profile_container">
+        <div class="avatar_container d-flex justify-content-center">
+          <% if stud.avatar.attached? %>
+            <%= image_tag stud.avatar.variant(resize_to_fill: [350, 250]) %>
+          <% else %>
+            <%= image_tag "default-student-avatar.png", style:"width:250px" %>
+          <% end %>
+        </div>
+        <div class="name d-flex justify-content-center text-center my-2 font-weight-bold">
+          <% if stud.name? %>
+            <%= link_to preview_cv_path(stud.user) do %>
+              <%= stud.name %>
+            <% end %>
+          <% else %>
+            Null
+          <% end %>
+        </div>
+        <%= link_to 'Reject', reject_student_job_campaign_path(@job_campaign, stud.id), method: :put, class: "btn btn-secondary w-100 reject-btn" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

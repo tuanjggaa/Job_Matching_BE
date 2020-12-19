@@ -1,0 +1,42 @@
+<%= simple_form_for @tech_skill, html: { multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="container" id="admin-manage-new-language">
+  <div class="row d-flex justify-content-center"><h1>Edit Tech Skill</h1></div>
+  <div class="row">
+      <div class="col-sm-3">Name:</div>
+      <div class="col-sm-9">
+        <%= f.input :name,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Enter name",
+                    label: false %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3">Description:</div>
+      <div class="col-sm-9">
+        <%= f.input :description,
+                    as: :text,
+                    required: false,
+                    placeholder: "Write some description",
+                    label: false %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3">Category:</div>
+      <div class="col-sm-9">
+        <%= f.association :category_tech_skill,
+                    as: :radio_buttons,
+                    hint: "Choose a category for this tech skill",
+                    label: false %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <%= f.button :submit, "Save", class: "btn btn-success w-100" %>
+      </div>
+  </div>
+</div>
+<% end %>

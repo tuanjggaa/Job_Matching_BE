@@ -1,0 +1,55 @@
+<%= simple_form_for @user, html: { multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="container" id="admin-manage-new">
+  <div class="row d-flex justify-content-center"><h1>Add New</h1></div>
+  <div class="row">
+      <div class="col-sm-3">Email:</div>
+      <div class="col-sm-9">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    placeholder: "Enter email",
+                    label: false %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3">Password:</div>
+      <div class="col-sm-9">
+        <%= f.input :password,
+                    required: true,
+                    placeholder: "Enter password",
+                    label: false %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3">Role:</div>
+      <div class="col-sm-9">
+        <% if current_user.admin? %>
+          <%= f.input :account_type,
+                      prompt: 'Student',
+                      collection: [
+                                    ['Student', 'student'],
+                                    ['Company', 'company']
+                                  ],
+                      label: false %>
+        <% else %>
+          <%= f.input :account_type,
+                      prompt: 'Student',
+                      collection: [
+                                    ['Student', 'student'],
+                                    ['Company', 'company'],
+                                    ['Admin', 'admin']
+                                  ],
+                      label: false %>
+        <% end %>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <%= f.button :submit, "Save", class: "btn btn-success w-100" %>
+      </div>
+  </div>
+</div>
+<% end %>

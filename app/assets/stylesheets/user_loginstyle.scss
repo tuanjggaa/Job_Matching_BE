@@ -1,0 +1,49 @@
+#session-new {
+  .logo
+  {
+    padding-top:30px;
+    width:100%;
+  }
+  .welcome_heading {
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 0;
+  }
+
+  .sub_welcome_heading {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .forgot_password{
+    padding-top: 0.5em;
+    width:100%;
+  }
+  .forgot_password button{
+    color:#0a66c2 !important;
+    font-weight: 600;
+    background-color: white!important;
+    border-radius: 20px !important;
+    border:white !important;
+  }
+  .forgot_password button:hover
+  {
+    background-color: #F4EDEC !important;
+  }
+  .join_now
+  {
+    width:100%;
+    font-family: "Roboto", sans-serif;
+  }
+  .join_now a
+  {
+    text-decoration: none;
+    color: #0a66c2;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,208 @@
+<%= simple_form_for @job_campaign, html: { multipart: true } do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="container" id="company-new-campaign">
+  <div class="row title d-flex justify-content-center text-center">
+    <h2>Edit Your Campaign</h2>
+  </div>
+
+  <div class="row" style="margin-top: 25px;">
+    <div class="col-sm-2 d-flex">
+      <p>Title:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :title,
+                  required: true,
+                  autofocus: true,
+                  placeholder: "Enter campaign title",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Salary:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :salary,
+                  required: false,
+                  placeholder: "Enter salary (milions)",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Work Hours:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :work_hour_per_week,
+                  collection: 1..40,
+                  hint: "Working hours per week",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>GPA:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :gpa,
+                  as: :decimal,
+                  required: false,
+                  placeholder: "From 0 to 10",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Location:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :location,
+                  collection: ['An Giang',
+                              'Bà Rịa - Vũng Tàu',
+                              'Đà Nẵng',
+                              'Hải Phòng',
+                              'TP HCM'],
+                  hint: "Working place",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Description:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :description,
+                  as: :text,
+                  required: false,
+                  placeholder: "Say something about this campaign",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Quantity:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :quantity,
+                  required: true,
+                  placeholder: "Enter recruitment quantity",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Minimum Month:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :min_intern_month,
+                  required: true,
+                  placeholder: "Enter minimum month for working period",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Skill Level:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :skill_level,
+                  collection: [
+                                ['Internship', 'internship'],
+                                ['Freshman', 'freshman'],
+                                ['Professional', 'professional'],
+                                ['Expert', 'expert']
+                              ],
+                  hint: "Level requirement",
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Is Open?:</p>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :is_open,
+                  collection: [
+                                ['Yes', 'yes'],
+                                ['No', 'no']
+                              ],
+                  label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Certifications:</p>
+    </div>
+    <div class="col-sm-4">
+      <%= f.association :certifications,
+                        input_html: { multiple: true },
+                        hint: 'Hold Ctrl and choose certifications your company requires',
+                        label: false %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2 d-flex">
+      <p>Languages:</p>
+    </div>
+    <div class="col-sm-4">
+      <%= f.association :languages,
+                        input_html: { multiple: true },
+                        hint: 'Hold Ctrl and choose languages your company requires',
+                        label: false %>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:10px">
+    <div class="col-sm-2 d-flex">
+      <p>Skills:</p>
+    </div>
+    <div class="col-sm-10">
+      <div class="row d-flex text-center" style="font-size:20px; font-weight: 600;">
+        <div class="col-sm-4">Skill Name</div>
+        <div class="col-sm-3">Priority</div>
+        <div class="col-sm-3 pl-2">Level</div>
+        <div class="col-sm-2 new-tech-skills">
+          <%= link_to_add_association 'Add Skill', f, :tech_skills_campaigns,
+                                                data: { association_insertion_node: ".tech_skills_place",
+                                                        association_insertion_method: :append },
+                                                class: 'btn btn-info float-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:5px">
+    <div class="col-sm-2 d-flex">
+        <p></p>
+    </div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm tech_skills_place">
+          <%= f.simple_fields_for :tech_skills_campaigns do |tech_camp| %>
+            <%= render "tech_skills_campaign_fields", f: tech_camp, collection: @tech_skills %>
+          <% end %>
+        </div>
+      </div>  
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+      <%= f.button :submit, "Save", class: "btn btn-success w-100" %>
+    </div>
+  </div>
+</div>
+<% end %>

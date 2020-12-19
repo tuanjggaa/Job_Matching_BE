@@ -1,0 +1,43 @@
+#company-new-campaign {
+  span {
+    font-family: "Roboto", sans-serif !important;
+    font-weight: 500;
+  }
+  body {
+    font-weight: 400;
+  }
+
+  .header_item_font {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    color: black;
+  }
+  .logo_font {
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+  }
+  li a {
+    color: black !important;
+  }
+  .title{
+      margin-top:20px;
+  }
+  .campaign_description{
+      margin-top:25px;
+  }
+  p{
+      font-weight: 500;
+      font-size:20px;
+  }
+  .width100
+  {
+      width:100%;
+  }
+  .height500px
+  {
+      height:500px
+  }
+  select{
+      text-align-last: center;
+  }
+}

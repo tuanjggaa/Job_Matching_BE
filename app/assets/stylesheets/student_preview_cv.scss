@@ -1,0 +1,32 @@
+#student-preview-cv {
+  .avatar{
+    height:200px;
+    width:200px;
+    background-color:white;
+    margin-bottom: 10px;
+  }
+  .slash{
+      height:40px;
+      width: 100%;
+      background-color: rgb(189, 168, 51);
+  }
+  .container p{
+      font-size:20px;
+  }
+  .border_right{
+      border-right: black solid 1px;
+      
+  }
+  .col-sm-2 p{
+      font-weight: bold;
+  }
+  .col-sm-2{
+      padding: 0!important;
+  }
+  .col-sm-10 {
+      padding: 0 !important;
+  }
+  p {
+      font-weight: 600;
+  }
+}

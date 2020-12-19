@@ -1,0 +1,49 @@
+<div class="container" id="admin-manage-certifications">
+  <div class="row d-flex justify-content-center text-center">
+    <h1>ALL CERTIFICATIONS</h1>
+  </div>
+  <div class="row search">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search">
+        <div class="input-group-append">
+          <button class="btn btn-success" type="submit">Go</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row d-flex control_button">
+    <div class="col d-flex justify-content-center">    
+      <%= link_to "Add New Certification", new_certification_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+  <div class="row table-responsive">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Cert #</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Vendor</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <% @certifications.each do |cert| %>
+      <tbody>
+        <tr>
+          <td><%= cert.id %></td>
+          <td><%= cert.name %></td>
+          <td class="text-truncate" style="max-width: 200px"><%= cert.description %></td>
+          <td><%= cert.vendor %></td>
+          <td>
+            <%= link_to "Edit", edit_certification_path(cert), class: "btn btn-primary mr-1" %>
+            <%= link_to "Delete", certification_path(cert), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>

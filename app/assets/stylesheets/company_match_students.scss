@@ -1,0 +1,73 @@
+#company-match-students {
+  span {
+    font-family: "Roboto", sans-serif !important;
+    font-weight: 500;
+  }
+  body {
+    font-weight: 400;
+  }
+
+  .header_item_font {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    color: black;
+  }
+  .logo_font {
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+  }
+  li a {
+    color: black !important;
+  }
+  .profile_container{
+    width:100%;
+    background-color: lightblue;
+    height:320px;
+    margin-bottom:20px;
+  }
+  .avatar_container{
+    width:100%;
+    height:250px;
+    background-color:white;
+  }
+
+  .profile_container .reject_btn{
+    width:100%;
+    height:50px;
+    padding:0;
+  }
+  .profile_container .view_btn{
+    width:100%;
+    height:50px;
+    background: #D3D3D3;
+    vertical-align: middle;
+  }
+  .profile_container .view_btn:hover{
+    background: #E0E0E0;
+  }
+  .name a:hover{
+    text-decoration: none;
+  }
+  .name a:visited{
+    text-decoration: none;
+    color:black;
+  }
+  .control_button {
+    margin-bottom: 10px;
+  }
+  .control_button button {
+    margin-right: 5px;
+    height: 50px;
+    width: 250px;
+  }
+  table tr td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  table tr th {
+    text-align: center;
+  }
+  /*#logo-box {
+    max-width: 250px !important;
+  }*/
+}

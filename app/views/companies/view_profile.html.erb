@@ -1,0 +1,52 @@
+<div class="container" id="company_profile">
+  <div class="row">
+    <% if @company.headline.attached? %>
+      <%= image_tag @company.headline.variant(resize_to_fill: [1140, 400]) %>
+    <% end %>
+  </div>
+  <div class="row company_profile_info">
+    <div class="col company_img_container d-flex justify-content-center">
+      <% if @company.logo.attached? %>
+        <%= image_tag @company.logo.variant(resize_to_fill: [150, 150]) %>
+      <% end %>
+    </div>
+    <div class="col">
+      <p class="company_title"><%= @company.name %></p>
+      <span><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>&nbsp <%= @company.address %></span><br>
+      <span>
+        <i class="fa fa-cog fa-sm" aria-hidden="true"></i>&nbsp <%= @company.expertise %> &nbsp;&nbsp;
+        <i class="fa fa-users" aria-hidden="true"><%= @company.company_size %>+</i> &nbsp&nbsp Country: <%= @company.country %>
+      </span><br>
+      <span><i class="fa fa-calendar fa-sm" aria-hidden="true"></i>&nbsp <%= @company.working_hour %> Hours/Week
+      </span><br>
+      <span><i class="fa fa-phone fa-sm" aria-hidden="true"></i>&nbsp <%= @company.phone %>
+      </span><br>
+      <span><i class="fa fa-address-card fa-xs" aria-hidden="true"></i></i>&nbsp <%= @company.tax_identification_number %>
+      </span><br>
+    </div>
+  </div>
+  <div class="row text-center d-flex justify-content-center" >
+    <h2>Company Description</h2>
+  </div>
+  <div class="row company_description" >
+    <div>
+      <% if @company.description? %>
+        <%= simple_format(@company.description.gsub(/ {2,}/) { '&nbsp;' * $&.length }) %>
+      <% else %>
+        <%= @company.description %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row text-center d-flex justify-content-center" >
+    <h2>Company Benefits</h2>
+  </div>
+  <div class="row company_benefit" >
+    <div>
+      <% if @company.benefit? %>
+        <%= simple_format(@company.benefit.gsub(/ {2,}/) { '&nbsp;' * $&.length }) %>
+      <% else %>
+        <%= @company.benefit %>
+      <% end %>
+    </div>
+  </div>
+</div>
